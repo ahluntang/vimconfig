@@ -1,35 +1,23 @@
 " Notes {
 "   Personal .vimrc file of Ah-Lun Tang
 "   You can find me at http://ahlun.be and http://blog.ahlun.be
-
-
 "   License info: use it, share it, do whatever you want with it.
 "   This .vimrc configuration is based on my personal flavors on how I want to use vim
 "   For options, check vim man page of many other .vimrc configurations shared on the web.
 "   If you have interesting options that you think I could use, please feel free to comment or contact me.
 "
-"
-"   Also check out snipMate.vim plugin at
-"   - http://vimeo.com/3535418 (introductory screencast)
-"   - http://www.vim.org/scripts/script.php?script_id=2540 (plugin page at vim.org)
-"   - https://github.com/msanders/snipmate.vim (github project)
-"   Use git to install snipMate:
-"       git clone git://github.com/msanders/snipmate.vim.git
-"       cd snipmate.vim
-"       cp -R * ~/.vim
 " }
 
 " General {
-"   
     set nocompatible                    " use vim defaults          
     set encoding=utf-8                  " use utf-8 as encoding
     set laststatus=2
     set history=1000                    " increase history
     set backup                         " backups are useful
-    set bdir-=.
-    set bdir+=~/.vimscratch
-    set dir-=.
-    set dir+=~/.vimscratch
+	set undofile
+    set backupdir=~/.vimscratch/backup//,~/tmp//,~//
+    set directory=~/.vimscratch//,~/tmp//,~//
+    set undodir=~/.vimscratch/undo//,~/tmp//,~//
     set wildmenu                        " show list instead of just completing
     set wildmode=list:longest,full      " command <tab> completion, list matches, then longest common part, then all
     " Behavior {
@@ -68,7 +56,6 @@
     " }
 
 " }
-" 
 
 " Searching {
     set hlsearch                        " highlight searches
@@ -78,7 +65,6 @@
 " }
 
 " Commands {
-    "command W w !sudo tee % >/dev/null
     command W execute 'silent w !sudo tee % >/dev/null' | silent e! %
 "}
 
