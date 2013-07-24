@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/ahluntang/.oh-my-zsh'
+let g:netrw_dirhist_2='/Users/ahluntang/repos/github/api.ahlun.be'
+let g:netrw_dirhist_3='/Users/ahluntang/repos/github/ahlun.be/app/commands'
+let g:netrw_dirhist_4='/Users/ahluntang/repos/github/ahlun.be/app/config'
+let g:netrw_dirhist_5='/Users/ahluntang/repos/github/ahlun.be/app/controllers'
+let g:netrw_dirhist_6='/Users/ahluntang/Downloads/themeforest-3602009-pressgrid-frontend-publishing-multimedia-theme/PressGrid_new'
