@@ -37,7 +37,8 @@
 
     " Vim UI {
         color molokai
-        set gfn=Menlo\ for\ Powerline:h12 "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
+        set gfn=PragmataPro:h13 "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
+        "set gfn=Menlo\ for\ Powerline:h12 "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
         syntax on                       " enable syntax highlighting when possible
         set ls=2                        " allways show statusline
         set tabstop=4                   " set number of spaces for tab character as 4
@@ -50,8 +51,10 @@
         "set nowrap                      " disable automatic line wrapping
 		set wrap
 		set linebreak
-		set showbreak=>\ 
+		set showbreak=\ >\ 
 		set showtabline=2
+		set laststatus=2 " Always display the statusline in all windows
+		set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 		"set guitablabel=%N/\ %t\ %M
     " }
 
@@ -121,7 +124,7 @@
         execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
                     \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
       endif
-      call vam#ActivateAddons(['powerline'], {'auto_install' : 0})
+      call vam#ActivateAddons(['powerline','AutoComplPop','L9'], {'auto_install' : 0})
     endfun      
 " }
 
@@ -195,3 +198,12 @@ function MyTabLine()
   endif
   return s
 endfunction
+
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
