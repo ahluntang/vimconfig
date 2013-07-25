@@ -1,14 +1,15 @@
 
-
 if [ -d ~/.vim ]
 then
   echo "\033[0;33mThe .vim folder is present in your home folder.\033[0m You'll need to remove (backup!!!) ~/.vim if you want to install"
   exit
 fi
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 
 echo "\033[0;34mCloning vimconfig...\033[0m"
-hash git >/dev/null && /usr/bin/env git clone git@github.com:ahluntang/vimconfig.git vimconfig || {
+hash git >/dev/null && /usr/bin/env git clone git@github.com:ahluntang/vimconfig.git ${DIR}/vimconfig || {
   echo "git not installed"
   exit
 }
@@ -29,8 +30,8 @@ then
 fi
 
 echo "\033[0;34mCreating .vimrc and .vim in homefolder...\033[0m"
-ln -s vimconfig/vim ~/.vim
-ln -s vimconfig/vimrc ~/.vimrc
+ln -s ${DIR}/vimconfig/vim ~/.vim
+ln -s ${DIR}/vimconfig/vimrc ~/.vimrc
 
 
 echo "\033[0;34mDone, execute vi/vim to retrieve the vim plugins...\033[0m"
