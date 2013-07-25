@@ -14,10 +14,11 @@
     set laststatus=2
     set history=1000                    " increase history
     set backup                         " backups are useful
-	set undofile
     set backupdir=~/.vimscratch/backup//,~/tmp//,~//
     set directory=~/.vimscratch//,~/tmp//,~//
-    set undodir=~/.vimscratch/undo//,~/tmp//,~//
+    if v:version < 703
+        set undodir=~/.vimscratch/undo//,~/tmp//,~//
+    endif
     set wildmenu                        " show list instead of just completing
     set wildmode=list:longest,full      " command <tab> completion, list matches, then longest common part, then all
     " Behavior {
