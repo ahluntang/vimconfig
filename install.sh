@@ -1,38 +1,38 @@
-
 if [ -d ~/.vim ]
 then
-  echo "\033[0;33mThe .vim folder is present in your home folder.\033[0m You'll need to remove (backup!!!) ~/.vim if you want to install"
+  echo "The .vim folder is present in your home folder. You'll need to remove (backup!!!) ~/.vim if you want to install"
   exit
 fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 
-echo "\033[0;34mCloning vimconfig...\033[0m"
+echo "Cloning vimconfig..."
 hash git >/dev/null && /usr/bin/env git clone git@github.com:ahluntang/vimconfig.git ${DIR}/vimconfig || {
   echo "git not installed"
   exit
 }
 
 
-echo "\033[0;34mChecking for mercurial...\033[0m"
+echo "Checking for mercurial..."
 if which hg >/dev/null; then
-	echo "\033[0;34mMercurial installed...\033[0m"
+	echo "Mercurial installed..."
 else
-	echo "\033[0;34mMercurial not found, vim addon manager will nog be able to retrieve plugins using hg...\033[0m"
+	echo "\Mercurial not found, vim addon manager will nog be able to retrieve plugins using hg..."
 fi
 
-echo "\033[0;34mLooking for an existing vimrc config...\033[0m"
+echo "Looking for an existing vimrc config..."
 if [ -f ~/.vimrc ] || [ -h ~/.vimrc ]
 then
-  echo "\033[0;33mFound ~/.vimrc.\033[0m \033[0;32mBacking up to ~/.vimrc.original\033[0m";
+  echo "Found ~/.vimrc. Backing up to ~/.vimrc.original";
   mv ~/.vimrc ~/.vimrc.original;
 fi
 
-echo "\033[0;34mCreating .vimrc and .vim in homefolder...\033[0m"
+echo "Creating .vimrc and .vim in homefolder..."
 ln -s ${DIR}/vimconfig/vim ~/.vim
 ln -s ${DIR}/vimconfig/vimrc ~/.vimrc
 
 
-echo "\033[0;34mDone, execute vi/vim to retrieve the vim plugins...\033[0m"
+echo "Done, execute vi/vim to retrieve the vim plugins..."
+echo "Make sure you have Mercurial/hg installed for this"
 
