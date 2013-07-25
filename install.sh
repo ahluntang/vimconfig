@@ -31,6 +31,9 @@ fi
 echo "Creating .vimrc and .vim in homefolder..."
 ln -s ${DIR}/vimconfig/vim ~/.vim
 ln -s ${DIR}/vimconfig/vimrc ~/.vimrc
+mkdir ~/.vimscratch
+mkdir ~/.vimscratch/undo
+mkdir ~/.vimscratch/backup
 
 
 echo "Done, execute vi/vim to retrieve the vim plugins..."
