@@ -78,21 +78,21 @@
 
 " Key (re)mappings {
     " use backslash button to convert current file to html with syntax coloring
-    map \ :runtime! syntax/2html.vim<cr>:w<cr>:clo<cr>
+    "map \ :runtime! syntax/2html.vim<cr>:w<cr>:clo<cr>
     " use q to save file and quit
-    map q :wq<cr>
+    "map q :wq<cr>
     " use v to quit without saving
-    map v :q<cr>
+    "map v :q<cr>
     " use V to quit without saving (forced)
-    map V :q!<cr>
+    "map V :q!<cr>
     " use F4 to save, make executable and execute
-    map <F4> :call ChmodExec<cr>
+    "map <F4> :call ChmodExec<cr>
     " use F5 to save, compile with Clang and execute
-    map <F5> :call CompileRunClang()<cr>
+    "map <F5> :call CompileRunClang()<cr>
     " use F6 to save, compile with Gcc and execute
-    map <F6> :call CompileRunGcc()<cr>
+    "map <F6> :call CompileRunGcc()<cr>
     " use F7 to save and execute with perl
-    map <F7> :call PerlExec()<cr>
+    "map <F7> :call PerlExec()<cr>
 " }
 
 " Functions {
