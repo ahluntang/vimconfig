@@ -6,10 +6,15 @@ yellow=$(tput setaf 3)
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+if [ -d ${DIR}/vimconfig ]
+then
+    echo "Backing up ${yellow}vimconfig${textreset}."
+    mv ${DIR}/vimconfig ${DIR}/vimconfig.original
+fi
 
 echo "Cloning vimconfig..."
 hash git >/dev/null && /usr/bin/env git clone git@github.com:ahluntang/vimconfig.git ${DIR}/vimconfig || {
-  echo "${red}git is not installed${textreset}"
+  echo "${red}Could not retrieve the vimconfigs! Is git working?{textreset}"
   exit
 }
 
