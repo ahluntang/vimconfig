@@ -1,10 +1,9 @@
 " Notes {
 "   Personal .vimrc file of Ah-Lun Tang
 "   You can find me at http://ahlun.be and http://blog.ahlun.be
-"   License info: use it, share it, do whatever you want with it.
 "   This .vimrc configuration is based on my personal flavors on how I want to use vim
 "   For options, check vim man page of many other .vimrc configurations shared on the web.
-"   If you have interesting options that you think I could use, please feel free to comment or contact me.
+"   If you have interesting options that you think I could use, please feel free to make an issue or fork this and submit a pull request.
 "
 " }
 
@@ -21,7 +20,8 @@
     endif
     set wildmenu                        " show list instead of just completing
     set wildmode=list:longest,full      " command <tab> completion, list matches, then longest common part, then all
-	set shortmess+=I
+    "set shortmess+=I                   " disable the splash screen
+    set shortmess=aTItoO                " disable the splash screen (and some various tweaks for messages).
     " Behavior {
         set mouse=a                     " automatically enable mouse usage
         set scrolloff=3                 " minimum lines to keep above and below cursor
@@ -33,16 +33,17 @@
         set sm                          " show matching braces
         "set autoindent                 " indent at the same level of the previous line
         "set smartindent                " indent while recognizing C syntax
-        "set cindent                        " more cleverly indenting than the other two
+        set cindent                    " more cleverly indenting than the other two
         "filetype indent on             " autoindent on opening file
     " }
 
     " Vim UI {
         color molokai
-        set gfn=PragmataPro:h13 "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
+        set gfn=PragmataPro:h13         "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
         "set gfn=Menlo\ for\ Powerline:h12 "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
         syntax on                       " enable syntax highlighting when possible
         set ls=2                        " allways show statusline
+        set expandtab                   " insert space characters whenever tab key is pressed.
         set tabstop=4                   " set number of spaces for tab character as 4
         set softtabstop=4               " let backspace delete indent
         set shiftwidth=4                " number of spaces to (auto)indent
@@ -53,7 +54,9 @@
         "set nowrap                      " disable automatic line wrapping
 		set wrap
 		set linebreak
-		set showbreak=\ >\ 
+		set showbreak=\ →\ \ 
+		set list
+		set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ 
 		set showtabline=2
 		set laststatus=2 " Always display the statusline in all windows
 		set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)

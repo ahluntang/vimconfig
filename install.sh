@@ -1,31 +1,39 @@
-if [ -d ~/.vim ]
-then
-  echo "The .vim folder is present in your home folder. You'll need to remove (backup!!!) ~/.vim if you want to install"
-  exit
-fi
+textreset=$(tput sgr0) # reset the foreground colour
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+yellow=$(tput setaf 3) 
+
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 
 echo "Cloning vimconfig..."
 hash git >/dev/null && /usr/bin/env git clone git@github.com:ahluntang/vimconfig.git ${DIR}/vimconfig || {
-  echo "git not installed"
+  echo "${red}git is not installed${textreset}"
   exit
 }
 
 
-echo "Checking for mercurial..."
+echo -n "Checking for mercurial... "
 if which hg >/dev/null; then
-	echo "Mercurial installed..."
+	echo " ${green}OK${textreset}"
 else
-	echo "\Mercurial not found, vim addon manager will nog be able to retrieve plugins using hg..."
+    echo " ${red}Not OK${textreset}"
+	echo " !!! Mercurial not found, vim addon manager will nog be able to retrieve plugins using hg !!!"
 fi
 
 echo "Looking for an existing vimrc config..."
 if [ -f ~/.vimrc ] || [ -h ~/.vimrc ]
 then
-  echo "Found ~/.vimrc. Backing up to ~/.vimrc.original";
+  echo "Found ${yellow}~/.vimrc${textreset}. Backing up to ${yellow}~/.vimrc.original${textreset}";
   mv ~/.vimrc ~/.vimrc.original;
+fi
+
+echo "Looking for an existing .vim folder..."
+if [-d ~/.vim ]
+then
+    echo "Found ${yellow}~/.vim${textreset} folder. Backing up to ${yellow}~/.vim.original${textreset}";
+    mv ~/.vim /.vim.original;
 fi
 
 echo "Creating .vimrc and .vim in homefolder..."
@@ -39,5 +47,5 @@ mkdir ~/.vimscratch/backup
 
 
 echo "Done, execute vi/vim to retrieve the vim plugins..."
-echo "Make sure you have Mercurial/hg installed for this"
+echo "${yellow}Make sure you have ${red}Mercurial/hg${yellow} installed for this !!${textreset}"
 
