@@ -61,7 +61,7 @@ Some other plugins it retrieves:
 * L9 (dependency for AutoComplPop)
 
 
-## Regarding manually compiled vim *
+## * Regarding manually compiled vim
 
 I have used this configuration/installer successfully on vim compiled on windows (cygwin) and centos with the following options:
 ```bash
