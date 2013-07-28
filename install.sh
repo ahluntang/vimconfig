@@ -30,7 +30,7 @@ then
 fi
 
 echo "Looking for an existing .vim folder..."
-if [-d ~/.vim ]
+if [ -d ~/.vim ]
 then
     echo "Found ${yellow}~/.vim${textreset} folder. Backing up to ${yellow}~/.vim.original${textreset}";
     mv ~/.vim /.vim.original;
