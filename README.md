@@ -45,7 +45,14 @@ This config uses powerline to enhance the statuslines in vim. For some symbols t
 By default, it uses the PragmataPro font [http://www.fsd.it/fonts/pragmatapro.htm].
 
 ## Credits
+
+### Vim Addon manager
+See: https://github.com/MarcWeber/vim-addon-manager
+
+To manage retrieve additional plugins for vim (Powerline, AutoComplPop, L9)
+
 ### Powerline 
+
 See: https://github.com/Lokaltog/powerline
 
 **Mode-dependent highlighting**
@@ -59,5 +66,5 @@ See: https://github.com/Lokaltog/powerline
 Some other plugins it retrieves:
 
 * AutoComplPop
-* L9 (dependancy for AutoComplPop)
+* L9 (dependency for AutoComplPop)
 
