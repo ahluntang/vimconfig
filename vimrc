@@ -21,6 +21,7 @@
     endif
     set wildmenu                        " show list instead of just completing
     set wildmode=list:longest,full      " command <tab> completion, list matches, then longest common part, then all
+	set shortmess+=I
     " Behavior {
         set mouse=a                     " automatically enable mouse usage
         set scrolloff=3                 " minimum lines to keep above and below cursor
