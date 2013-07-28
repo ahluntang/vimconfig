@@ -38,7 +38,7 @@ echo "Looking for an existing .vim folder..."
 if [ -d ~/.vim ]
 then
     echo "Found ${yellow}~/.vim${textreset} folder. Backing up to ${yellow}~/.vim.original${textreset}";
-    mv ~/.vim /.vim.original;
+    mv ~/.vim ~/.vim.original;
 fi
 
 echo "Creating .vimrc and .vim in homefolder..."
