@@ -44,3 +44,20 @@ I have used this configuration/installer successfully on vim compiled on windows
 This config uses powerline to enhance the statuslines in vim. For some symbols to work, you can use one of the patched fonts on https://github.com/Lokaltog/powerline-fonts and change the font in the .vimrc file.
 By default, it uses the PragmataPro font [http://www.fsd.it/fonts/pragmatapro.htm].
 
+## Credits
+### Powerline 
+See: https://github.com/Lokaltog/powerline
+
+**Mode-dependent highlighting**
+
+![icon normal](https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-normal.png)
+![icon insert](https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-insert.png)
+![icon visual](https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-visual.png)
+![icon replace](https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-replace.png)
+
+### Other
+Some other plugins it retrieves:
+
+* AutoComplPop
+* L9 (dependancy for AutoComplPop)
+
