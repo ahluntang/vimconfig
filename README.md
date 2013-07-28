@@ -38,3 +38,9 @@ I have used this configuration/installer successfully on vim compiled on windows
 ```bash
 ./configure --disable-selinux --enable-rubyinterp --enable-pythoninterp --with-features=big
 ```
+
+## Fonts
+
+This config uses powerline to enhance the statuslines in vim. For some symbols to work, you can use one of the patched fonts on https://github.com/Lokaltog/powerline-fonts and change the font in the .vimrc file.
+By default, it uses the PragmataPro font [http://www.fsd.it/fonts/pragmatapro.htm].
+
