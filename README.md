@@ -31,18 +31,10 @@ wget --no-check-certificate https://raw.github.com/ahluntang/vimconfig/master/in
 Now run vi/vim to install the vim-addon-manager and to retrieve the plugins using the vim-addon-manager.
 This requires hg for some plugins.
 
+### Fonts
 
-## Regarding manually compiled vim
-
-I have used this configuration/installer successfully on vim compiled on windows (cygwin) and centos with the following options:
-```bash
-./configure --disable-selinux --enable-rubyinterp --enable-pythoninterp --with-features=big
-```
-
-## Fonts
-
-This config uses powerline to enhance the statuslines in vim. For some symbols to work, you can use one of the patched fonts on https://github.com/Lokaltog/powerline-fonts and change the font in the .vimrc file.
-By default, it uses the PragmataPro font [http://www.fsd.it/fonts/pragmatapro.htm].
+This config uses Powerline to enhance the statuslines in vim. For some symbols to work, you can use one of the patched fonts on https://github.com/Lokaltog/powerline-fonts and change the font in the .vimrc file.
+By default, it uses [PragmataPro](http://www.fsd.it/fonts/pragmatapro.htm) by Fabrizio Schiavi.
 
 ## Credits
 
@@ -68,3 +60,11 @@ Some other plugins it retrieves:
 * AutoComplPop
 * L9 (dependency for AutoComplPop)
 
+
+## Regarding manually compiled vim *
+
+I have used this configuration/installer successfully on vim compiled on windows (cygwin) and centos with the following options:
+```bash
+./configure --disable-selinux --enable-rubyinterp --enable-pythoninterp --with-features=big
+```
+For windows users that don't want cygwin, this also works with [Cream](http://cream.sourceforge.net/)
