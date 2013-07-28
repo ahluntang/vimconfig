@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>vimconfig by ahluntang</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/ahluntang/vimconfig">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/ahluntang/vimconfig/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/ahluntang/vimconfig/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>vimconfig</h1>
+          <p>Automatic vim configuration with enhanced completion and statuslines.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/ahluntang">ahluntang</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="vimconfig" class="anchor" href="#vimconfig"><span class="octicon octicon-link"></span></a>vimconfig</h1>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p><strong>Requirements</strong></p>
+
+<ul>
+<li>vim 7.3 (older versions don't support undofiles)</li>
+<li>git : to clone this repository</li>
+<li>hg (mercurial) : for the vim-addon-manager to retrieve some of the vim plugins</li>
+<li>curl or wget: to fetch the installation script.</li>
+<li>If you compiled vim manually, it should be configured with at least the following options *
+
+<ul>
+<li>--enable-pythoninterp (for the powerline to work)</li>
+<li>--with-features=big (for multibyte/utf-8 support)</li>
+</ul>
+</li>
+</ul><p><strong>Make sure you have moved your current .vim folder and .vimrc to a backup folder!</strong></p>
+
+<h3>
+<a name="install-using-curl" class="anchor" href="#install-using-curl"><span class="octicon octicon-link"></span></a>Install using curl:</h3>
+
+<div class="highlight"><pre>curl -LsS https://raw.github.com/ahluntang/vimconfig/master/install.sh | bash
+</pre></div>
+
+<h3>
+<a name="install-using-wget" class="anchor" href="#install-using-wget"><span class="octicon octicon-link"></span></a>Install using wget</h3>
+
+<div class="highlight"><pre>wget --no-check-certificate https://raw.github.com/ahluntang/vimconfig/master/install.sh -O - | bash
+</pre></div>
+
+<p>Now run vi/vim to install the vim-addon-manager and to retrieve the plugins using the vim-addon-manager.
+This requires hg for some plugins.</p>
+
+<h3>
+<a name="fonts" class="anchor" href="#fonts"><span class="octicon octicon-link"></span></a>Fonts</h3>
+
+<p>This config uses Powerline to enhance the statuslines in vim. For some symbols to work, you can use one of the patched fonts on <a href="https://github.com/Lokaltog/powerline-fonts">https://github.com/Lokaltog/powerline-fonts</a> and change the font in the .vimrc file.
+By default, it uses <a href="http://www.fsd.it/fonts/pragmatapro.htm">PragmataPro</a> by Fabrizio Schiavi.</p>
+
+<h2>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<h3>
+<a name="vim-addon-manager" class="anchor" href="#vim-addon-manager"><span class="octicon octicon-link"></span></a>Vim Addon manager</h3>
+
+<p>See: <a href="https://github.com/MarcWeber/vim-addon-manager">https://github.com/MarcWeber/vim-addon-manager</a></p>
+
+<p>To manage retrieve additional plugins for vim (Powerline, AutoComplPop, L9)</p>
+
+<h3>
+<a name="powerline" class="anchor" href="#powerline"><span class="octicon octicon-link"></span></a>Powerline</h3>
+
+<p>See: <a href="https://github.com/Lokaltog/powerline">https://github.com/Lokaltog/powerline</a></p>
+
+<p><strong>Mode-dependent highlighting</strong></p>
+
+<p><img src="https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-normal.png" alt="icon normal"><img src="https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-insert.png" alt="icon insert"><img src="https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-visual.png" alt="icon visual"><img src="https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-replace.png" alt="icon replace"></p>
+
+<h3>
+<a name="other" class="anchor" href="#other"><span class="octicon octicon-link"></span></a>Other</h3>
+
+<p>Some other plugins it retrieves:</p>
+
+<ul>
+<li>AutoComplPop</li>
+<li>L9 (dependency for AutoComplPop)</li>
+</ul><h2>
+<a name="-regarding-manually-compiled-vim" class="anchor" href="#-regarding-manually-compiled-vim"><span class="octicon octicon-link"></span></a>* Regarding manually compiled vim</h2>
+
+<p>I have used this configuration/installer successfully on vim compiled on windows (cygwin) and centos with the following options:</p>
+
+<div class="highlight"><pre>./configure --disable-selinux --enable-rubyinterp --enable-pythoninterp --with-features<span class="o">=</span>big
+</pre></div>
+
+<p>For windows users that don't want cygwin, this also works with <a href="http://cream.sourceforge.net/">Cream</a></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
