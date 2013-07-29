@@ -14,7 +14,7 @@ vimconfig
   * --with-features=big (for multibyte/utf-8 support)
 
 
-**Make sure you have moved your current .vim folder and .vimrc to a backup folder!**
+**Make sure you have backed up your current .vim folder and .vimrc config file!**
 
 ### Install using curl:
 
