@@ -27,6 +27,7 @@
         set scrolloff=3                 " minimum lines to keep above and below cursor
         set showcmd                     " select characters/lines in visual mode
         set ttyfast                     " smoother changes
+        set backspace=indent,eol,start  " osx backspace fix
     " }
 
     " Formatting {
@@ -52,15 +53,15 @@
         set title                       " show title in console title bar
         set cmdheight=1
         "set nowrap                      " disable automatic line wrapping
-		set wrap
-		set linebreak
-		set showbreak=\ →\ \ 
-		set list
-		set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ 
-		set showtabline=2
-		set laststatus=2 " Always display the statusline in all windows
-		set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-		"set guitablabel=%N/\ %t\ %M
+        set wrap
+        set linebreak
+        set showbreak=\ →\ \ 
+        set list
+        set listchars=trail:·,precedes:«,extends:»,tab:▸\ 
+        set showtabline=2
+        set laststatus=2 " Always display the statusline in all windows
+        set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+        "set guitablabel=%N/\ %t\ %M
         hi TabLineFill ctermfg=237 ctermbg=237
         hi TabLineSel ctermfg=28 ctermbg=148
         hi TabLine ctermfg=253 ctermbg=239
