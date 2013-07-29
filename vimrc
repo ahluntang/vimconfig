@@ -1,22 +1,22 @@
 " Notes {
-"   Personal .vimrc file of Ah-Lun Tang
-"   You can find me at http://ahlun.be and http://blog.ahlun.be
-"   This .vimrc configuration is based on my personal flavors on how I want to use vim
 "   For options, check vim man page of many other .vimrc configurations shared on the web.
-"   If you have interesting options that you think I could use, please feel free to make an issue or fork this and submit a pull request.
-"
+"   If you have interesting suggestions, please feel free to make an issue or fork this and submit a pull request.
 " }
 
 " General {
-    set nocompatible                    " use vim defaults          
+    set nocompatible                    " use vim defaults
     set encoding=utf-8                  " use utf-8 as encoding
-    set laststatus=2
+    set laststatus=2 " Always display the statusline in all windows
+    set showtabline=2
+    set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
     set history=1000                    " increase history
     set backup                         " backups are useful
-    set backupdir=~/.vimscratch/backup//,~/tmp//,~//
-    set directory=~/.vimscratch//,~/tmp//,~//
-    if v:version < 703
-        set undodir=~/.vimscratch/undo//,~/tmp//,~//
+    if isdirectory("~/.vimscratch")
+        set backupdir=~/.vimscratch/backup//,~/tmp//,~//
+        set directory=~/.vimscratch//,~/tmp//,~//
+        if v:version < 703
+            set undodir=~/.vimscratch/undo//,~/tmp//,~//
+        endif
     endif
     set wildmenu                        " show list instead of just completing
     set wildmode=list:longest,full      " command <tab> completion, list matches, then longest common part, then all
@@ -34,13 +34,14 @@
         set sm                          " show matching braces
         "set autoindent                 " indent at the same level of the previous line
         "set smartindent                " indent while recognizing C syntax
-        set cindent                    " more cleverly indenting than the other two
+        set cindent                     " more cleverly indenting than the other two
         "filetype indent on             " autoindent on opening file
     " }
 
     " Vim UI {
         color molokai
-        set gfn=PragmataPro:h13         "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
+        set gfn=PragmataPro:h13         " font to use (if using powerline, make sure to use a patched font)
+        "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
         "set gfn=Menlo\ for\ Powerline:h12 "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
         syntax on                       " enable syntax highlighting when possible
         set ls=2                        " allways show statusline
@@ -58,9 +59,6 @@
         set showbreak=\ →\ \ 
         set list
         set listchars=trail:·,precedes:«,extends:»,tab:▸\ 
-        set showtabline=2
-        set laststatus=2 " Always display the statusline in all windows
-        set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
         "set guitablabel=%N/\ %t\ %M
         hi TabLineFill ctermfg=237 ctermbg=237
         hi TabLineSel ctermfg=28 ctermbg=148
@@ -134,7 +132,7 @@
                     \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
       endif
       call vam#ActivateAddons(['powerline','AutoComplPop','L9'], {'auto_install' : 0})
-    endfun      
+    endfun
 " }
 
 "Run function to retrieve/update plugins/addons.
@@ -208,6 +206,8 @@ function MyTabLine()
   return s
 endfunction
 
+
+" make powerline faster
 if ! has('gui_running')
     set ttimeoutlen=10
     augroup FastEscape
