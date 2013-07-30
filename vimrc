@@ -83,8 +83,17 @@
     autocmd FileType html set omnifunc=htmlcomplete#CompleteTags noci
 "}
 
+" NERDTree Options {
+    " automatically close vim if the only window left open is a NERDTree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    let NERDTreeShowHidden=1
+    let NERDTreeMinimalUI=1
+"}
+
 
 " Key (re)mappings {
+    " use ctrl+n to toggle the NERDTree
+    map <C-n> :NERDTreeToggle<cr>
     " use backslash button to convert current file to html with syntax coloring
     "map \ :runtime! syntax/2html.vim<cr>:w<cr>:clo<cr>
     " use q to save file and quit
@@ -136,7 +145,7 @@
         execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
                     \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
       endif
-      call vam#ActivateAddons(['powerline','AutoComplPop','L9'], {'auto_install' : 0})
+      call vam#ActivateAddons(['powerline','AutoComplPop','L9', 'The_NERD_tree'], {'auto_install' : 0})
     endfun
 " }
 
