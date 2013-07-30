@@ -1,2 +1,4 @@
 .DS_Store
 vim/vim-addons/*
+vim/backupfiles/*
+vim/undofiles/*
