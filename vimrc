@@ -11,12 +11,10 @@
     set noshowmode                      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
     set history=1000                    " increase history
     set backup                          " backups are useful
-    if isdirectory("~/.vimscratch")
-        set backupdir=~/.vimscratch/backup//,~/tmp//,~//
-        set directory=~/.vimscratch//,~/tmp//,~//
-        if v:version < 703
-            set undodir=~/.vimscratch/undo//,~/tmp//,~//
-        endif
+    set backupdir=~/.vim/backupfiles//,~/tmp//,~//
+    set directory=~/.vim/undofiles//,~/tmp//,~//
+    if v:version < 703
+        set undodir=~/.vim/undofiles//,~/tmp//,~//
     endif
     set wildmenu                        " show list instead of just completing
     set wildmode=list:longest,full      " command <tab> completion, list matches, then longest common part, then all

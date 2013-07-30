@@ -45,12 +45,6 @@ echo "Creating .vimrc and .vim in homefolder..."
 ln -s ${DIR}/vimconfig/vim ~/.vim
 ln -s ${DIR}/vimconfig/vimrc ~/.vimrc
 
-echo "Creating backup and undo dir..."
-mkdir ~/.vimscratch
-mkdir ~/.vimscratch/undo
-mkdir ~/.vimscratch/backup
-
-
 echo "Done, execute vi/vim to retrieve the vim plugins..."
 echo "${yellow}Make sure you have ${red}Mercurial/hg${yellow} installed for this !!${textreset}"
 
