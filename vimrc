@@ -6,11 +6,11 @@
 " General {
     set nocompatible                    " use vim defaults
     set encoding=utf-8                  " use utf-8 as encoding
-    set laststatus=2 " Always display the statusline in all windows
+    set laststatus=2                    " Always display the statusline in all windows
     set showtabline=2
-    set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+    set noshowmode                      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
     set history=1000                    " increase history
-    set backup                         " backups are useful
+    set backup                          " backups are useful
     if isdirectory("~/.vimscratch")
         set backupdir=~/.vimscratch/backup//,~/tmp//,~//
         set directory=~/.vimscratch//,~/tmp//,~//
@@ -53,7 +53,7 @@
         set number                      " show line numbers
         set title                       " show title in console title bar
         set cmdheight=1
-        "set nowrap                      " disable automatic line wrapping
+        "set nowrap                     " disable automatic line wrapping
         set wrap
         set linebreak
         set showbreak=\ →\ \ 
@@ -76,6 +76,13 @@
 
 " Commands {
     command W execute 'silent w !sudo tee % >/dev/null' | silent e! %
+"}
+
+" Filetype AutoCompl {
+    filetype on
+    filetype plugin on
+    autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags noci
+    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags noci
 "}
 
 
