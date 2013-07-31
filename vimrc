@@ -69,7 +69,7 @@
     set hlsearch                        " highlight searches
     set incsearch                       " do incremental searching (while typing)
     set ignorecase                      " ignore cases while searching
-    hi Search cterm=NONE ctermfg=grey ctermbg=blue
+    hi Search cterm=NONE ctermfg=18 ctermbg=148
 " }
 
 " Commands {
@@ -78,7 +78,9 @@
 
 " Reformat fixes (when using gg=G) {
     " for xml files
-    au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+    "au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+    au FileType xml setlocal equalprg=tidy\ -i\ -xml
+    "au FileType pl  setlocal equalprg=perltidy\ -nola
 " }
 
 " Filetype AutoCompl {
@@ -104,15 +106,15 @@
 " Functions {
     " VIM Addon Manager
     fun SetupVAM()
-      let c = get(g:, 'vim_addon_manager', {})
-      let g:vim_addon_manager = c
-      let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
-      let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
-      if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
-        execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
-                    \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
-      endif
-      call vam#ActivateAddons(['powerline','AutoComplPop','L9', 'The_NERD_tree'], {'auto_install' : 0})
+        let c = get(g:, 'vim_addon_manager', {})
+        let g:vim_addon_manager = c
+        let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+        let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+        if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+            execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager ' 
+                \ shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+        endif
+        call vam#ActivateAddons(['powerline','AutoComplPop','L9', 'The_NERD_tree'], {'auto_install' : 0})
     endfun
 
     " Content for tabs
@@ -183,3 +185,4 @@ if ! has('gui_running')
         au InsertLeave * set timeoutlen=1000
     augroup END
 endif
+
