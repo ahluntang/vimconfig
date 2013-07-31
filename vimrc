@@ -76,6 +76,11 @@
     command W execute 'silent w !sudo tee % >/dev/null' | silent e! %
 "}
 
+" Reformat fixes (when using gg=G) {
+    " for xml files
+    au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+" }
+
 " Filetype AutoCompl {
     filetype on
     filetype plugin on
@@ -90,52 +95,14 @@
     let NERDTreeMinimalUI=1
 "}
 
-
 " Key (re)mappings {
     " use ctrl+n to toggle the NERDTree
     map <C-n> :NERDTreeToggle<cr>
-    " use backslash button to convert current file to html with syntax coloring
-    "map \ :runtime! syntax/2html.vim<cr>:w<cr>:clo<cr>
-    " use q to save file and quit
-    "map q :wq<cr>
-    " use v to quit without saving
-    "map v :q<cr>
-    " use V to quit without saving (forced)
-    "map V :q!<cr>
-    " use F4 to save, make executable and execute
-    "map <F4> :call ChmodExec<cr>
-    " use F5 to save, compile with Clang and execute
-    "map <F5> :call CompileRunClang()<cr>
-    " use F6 to save, compile with Gcc and execute
-    "map <F6> :call CompileRunGcc()<cr>
-    " use F7 to save and execute with perl
-    "map <F7> :call PerlExec()<cr>
+    "
 " }
 
 " Functions {
-    func! PerlExec()
-        exec "w"
-        exec "!perl ./%"
-    endfunc
-
-    func! ChmodExec()
-        exec "w"
-        exec "!chmod a+x %"
-        exec "! ./%"
-    endfunc
-
-    func! CompileRunGcc()
-        exec "w"
-        exec "!gcc -arch x86_64 -arch i386 -lstdc++ % -o bin%<"
-        exec "! ./bin%<"
-    endfunc
-
-    func! CompileRunClang()
-        exec "w"
-        exec "!clang -arch x86_64 -arch i386 -lstdc++ % -o bin%<"
-        exec "! ./bin%<"
-    endfunc
-
+    " VIM Addon Manager
     fun SetupVAM()
       let c = get(g:, 'vim_addon_manager', {})
       let g:vim_addon_manager = c
@@ -147,79 +114,65 @@
       endif
       call vam#ActivateAddons(['powerline','AutoComplPop','L9', 'The_NERD_tree'], {'auto_install' : 0})
     endfun
+
+    " Content for tabs
+    function MyTabLine()
+      let s = '' " complete tabline goes here
+      for t in range(tabpagenr('$')) " loop through each tab page
+        if t + 1 == tabpagenr() " select the highlighting for the buffer names
+          let s .= '%#TabLineSel#'
+        else
+          let s .= '%#TabLine#'
+        endif
+        let s .= ' ' " empty space
+        let s .= '%' . (t + 1) . 'T' " set the tab page number (for mouse clicks)
+        let s .= t + 1 . ' ' " set page number string
+        " get buffer names and statuses
+        let n = ''  "temp string for buffer names while we loop and check buftype
+        let m = 0 " &modified counter
+        let bc = len(tabpagebuflist(t + 1))  "counter to avoid last ' '
+        for b in tabpagebuflist(t + 1) " loop through each buffer in a tab
+          " buffer types: quickfix gets a [Q], help gets [H]{base fname}
+          " others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
+          if getbufvar( b, "&buftype" ) == 'help'
+            let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
+          elseif getbufvar( b, "&buftype" ) == 'quickfix'
+            let n .= '[Q]'
+          else
+            let n .= pathshorten(bufname(b))
+          endif
+          if getbufvar( b, "&modified" ) " check and ++ tab's &modified count
+            let m += 1
+          endif
+          if bc > 1 " no final ' ' added...formatting looks better done later
+            let n .= ' '
+          endif
+          let bc -= 1
+        endfor
+        if m > 0 " add modified label [n+] where n pages in tab are modified
+          "let s .= '[' . m . '+]'
+          let s.= '+ '
+        endif
+        if n == '' " add buffer names
+          let s .= '[No Name]'
+        else
+          let s .= n
+        endif
+        let s .= ' ' " switch to no underlining and add final space to buffer list
+      endfor
+      let s .= '%#TabLineFill#%T' " after the last tab fill with TabLineFill and reset tab page nr
+      if tabpagenr('$') > 1 " right-align the label to close the current tab page
+        let s .= '%=%#TabLine#%999XX'
+      endif
+      return s
+    endfunction
 " }
 
-"Run function to retrieve/update plugins/addons.
+"Run Vim Addon Manager function to retrieve/update plugins/addons.
 call SetupVAM()
 
-
+" set the tabline using the MyTabLine function
 set tabline=%!MyTabLine()
-function MyTabLine()
-  let s = '' " complete tabline goes here
-  " loop through each tab page
-  for t in range(tabpagenr('$'))
-    " select the highlighting for the buffer names
-    if t + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    else
-      let s .= '%#TabLine#'
-    endif
-    " empty space
-    let s .= ' '
-    " set the tab page number (for mouse clicks)
-    let s .= '%' . (t + 1) . 'T'
-    " set page number string
-    let s .= t + 1 . ' '
-    " get buffer names and statuses
-    let n = ''  "temp string for buffer names while we loop and check buftype
-    let m = 0 " &modified counter
-    let bc = len(tabpagebuflist(t + 1))  "counter to avoid last ' '
-    " loop through each buffer in a tab
-    for b in tabpagebuflist(t + 1)
-      " buffer types: quickfix gets a [Q], help gets [H]{base fname}
-      " others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
-      if getbufvar( b, "&buftype" ) == 'help'
-        let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
-      elseif getbufvar( b, "&buftype" ) == 'quickfix'
-        let n .= '[Q]'
-      else
-        let n .= pathshorten(bufname(b))
-        "let n .= bufname(b)
-      endif
-      " check and ++ tab's &modified count
-      if getbufvar( b, "&modified" )
-        let m += 1
-      endif
-      " no final ' ' added...formatting looks better done later
-      if bc > 1
-        let n .= ' '
-      endif
-      let bc -= 1
-    endfor
-    " add modified label [n+] where n pages in tab are modified
-    if m > 0
-      "let s .= '[' . m . '+]'
-      let s.= '+ '
-    endif
-    " add buffer names
-    if n == ''
-      let s .= '[No Name]'
-    else
-      let s .= n
-    endif
-    " switch to no underlining and add final space to buffer list
-    "let s .= '%#TabLineSel#' . ' '
-    let s .= ' '
-  endfor
-  " after the last tab fill with TabLineFill and reset tab page nr
-  let s .= '%#TabLineFill#%T'
-  " right-align the label to close the current tab page
-  if tabpagenr('$') > 1
-    let s .= '%=%#TabLine#%999XX'
-  endif
-  return s
-endfunction
-
 
 " make powerline faster
 if ! has('gui_running')
