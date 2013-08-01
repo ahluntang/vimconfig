@@ -13,7 +13,7 @@ then
 fi
 
 echo "Cloning vimconfig..."
-hash git >/dev/null && /usr/bin/env git clone git@github.com:ahluntang/vimconfig.git ${DIR}/vimconfig || {
+hash git >/dev/null && /usr/bin/env git clone https://github.com/ahluntang/vimconfig.git ${DIR}/vimconfig || {
   echo "${red}Could not retrieve the vimconfigs! Is git working?{textreset}"
   exit
 }
