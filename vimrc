@@ -11,14 +11,13 @@
     set noshowmode                      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
     set history=1000                    " increase history
     set backup                          " backups are useful
-    set backupdir=~/.vim/backupfiles//,~/tmp//,~//
-    set directory=~/.vim/undofiles//,~/tmp//,~//
+    set backupdir=~/.vim/backupfiles//
+    set directory=~/.vim/undofiles//
     if v:version < 703
-        set undodir=~/.vim/undofiles//,~/tmp//,~//
+        set undodir=~/.vim/undofiles//
     endif
     set wildmenu                        " show list instead of just completing
     set wildmode=list:longest,full      " command <tab> completion, list matches, then longest common part, then all
-    "set shortmess+=I                   " disable the splash screen
     set shortmess=aTItoO                " disable the splash screen (and some various tweaks for messages).
     " Behavior {
         set clipboard=unnamed           " integrate with operating systems clipboard
@@ -38,7 +37,7 @@
     " }
 
     " Vim UI {
-        color molokai
+        color molokai                   " color scheme
         set gfn=PragmataPro:h13         " font to use (if using powerline, make sure to use a patched font)
         "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
         "set gfn=Menlo\ for\ Powerline:h12 "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
@@ -52,16 +51,17 @@
         set number                      " show line numbers
         set title                       " show title in console title bar
         set cmdheight=1
-        "set nowrap                     " disable automatic line wrapping
         set wrap
         set linebreak
         set showbreak=\ →\ \ 
         set list
         set listchars=trail:·,precedes:«,extends:»,tab:▸\ 
-        "set guitablabel=%N/\ %t\ %M
-        hi TabLineFill ctermfg=237 ctermbg=237
-        hi TabLineSel ctermfg=28 ctermbg=148
-        hi TabLine ctermfg=253 ctermbg=239
+        " TabLine UI {
+            set tabline=%!MyTabLine()               " set the tabline using the MyTabLine function
+            hi TabLineFill ctermfg=237 ctermbg=237  " background
+            hi TabLineSel ctermfg=28 ctermbg=148    " selected tab
+            hi TabLine ctermfg=253 ctermbg=239      " tab
+        " }
     " }
 
 " }
@@ -70,7 +70,9 @@
     set hlsearch                        " highlight searches
     set incsearch                       " do incremental searching (while typing)
     set ignorecase                      " ignore cases while searching
-    hi Search cterm=NONE ctermfg=28 ctermbg=148
+    hi Search cterm=NONE 
+            \ ctermfg=28
+            \ ctermbg=148
 " }
 
 " Commands {
@@ -81,6 +83,7 @@
     " for xml files
     "au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
     au FileType xml setlocal equalprg=tidy\ -i\ -xml
+    " for perl
     "au FileType pl  setlocal equalprg=perltidy\ -nola
 " }
 
@@ -108,7 +111,6 @@
 " Key (re)mappings {
     " use ctrl+n to toggle the NERDTree
     map <C-n> :NERDTreeToggle<cr>
-    "
 " }
 
 " Functions {
@@ -176,21 +178,17 @@
       endif
       return s
     endfunction
+
+    if ! has('gui_running')  " make powerline faster
+        set ttimeoutlen=10
+        augroup FastEscape
+            autocmd!
+            au InsertEnter * set timeoutlen=0
+            au InsertLeave * set timeoutlen=1000
+        augroup END
+    endif
+
 " }
 
-"Run Vim Addon Manager function to retrieve/update plugins/addons.
-call SetupVAM()
-
-" set the tabline using the MyTabLine function
-set tabline=%!MyTabLine()
-
-" make powerline faster
-if ! has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-endif
+call SetupVAM() "Run Vim Addon Manager function to retrieve/update plugins/addons.
 
