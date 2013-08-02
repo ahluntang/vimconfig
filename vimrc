@@ -69,7 +69,7 @@
     set hlsearch                        " highlight searches
     set incsearch                       " do incremental searching (while typing)
     set ignorecase                      " ignore cases while searching
-    hi Search cterm=NONE ctermfg=18 ctermbg=148
+    hi Search cterm=NONE ctermfg=28 ctermbg=148
 " }
 
 " Commands {
@@ -97,6 +97,13 @@
     let NERDTreeMinimalUI=1
 "}
 
+" indentLine Options {
+    let g:indentLine_char = '┊'
+    let g:indentLine_first_char = '┊'
+    let g:indentLine_showFirstIndentLevel = 1
+    let g:indentLine_color_term = 0
+" }
+
 " Key (re)mappings {
     " use ctrl+n to toggle the NERDTree
     map <C-n> :NERDTreeToggle<cr>
@@ -114,7 +121,7 @@
             execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager ' 
                 \ shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
         endif
-        call vam#ActivateAddons(['powerline','AutoComplPop','L9', 'The_NERD_tree'], {'auto_install' : 0})
+        call vam#ActivateAddons(['powerline','AutoComplPop','L9', 'The_NERD_tree','indentLine'], {'auto_install' : 0})
     endfun
 
     " Content for tabs
