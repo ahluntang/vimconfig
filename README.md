@@ -41,7 +41,7 @@ By default, it uses [PragmataPro](http://www.fsd.it/fonts/pragmatapro.htm) by Fa
 ### Vim Addon manager
 See: https://github.com/MarcWeber/vim-addon-manager
 
-To manage retrieve additional plugins for vim (Powerline, AutoComplPop, L9)
+To manage retrieve additional plugins for vim (Powerline, AutoComplPop, L9, indentLine)
 
 ### Powerline 
 
@@ -59,6 +59,7 @@ Some other plugins it retrieves:
 
 * AutoComplPop
 * L9 (dependency for AutoComplPop)
+* indentLine (requires `conceal`: Vim 7.3)
 
 
 ## * Regarding manually compiled vim
