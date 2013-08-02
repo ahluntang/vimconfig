@@ -21,6 +21,7 @@
     "set shortmess+=I                   " disable the splash screen
     set shortmess=aTItoO                " disable the splash screen (and some various tweaks for messages).
     " Behavior {
+        set clipboard=unnamed           " integrate with operating systems clipboard
         set mouse=a                     " automatically enable mouse usage
         set scrolloff=3                 " minimum lines to keep above and below cursor
         set showcmd                     " select characters/lines in visual mode
