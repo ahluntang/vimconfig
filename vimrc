@@ -14,7 +14,7 @@
     set backupdir=~/.vim/backupfiles//
     set directory=~/.vim/undofiles//
     if v:version < 703
-        set undodir=~/.vim/undofiles//
+        set undodir=~/.vim/undofiles//  " vim versions lower than 7.3 don't know undodir
     endif
     set wildmenu                        " show list instead of just completing
     set wildmode=list:longest,full      " command <tab> completion, list matches, then longest common part, then all
@@ -37,10 +37,15 @@
     " }
 
     " Vim UI {
+        " Font Setting { 
+            " NOTE: some fonts do not have the correct unicode symbols for the
+            " Powerline plugin. Make sure to use a patched font.
+            " For compatible fonts and more information, see: https://github.com/Lokaltog/powerline-fonts
+            set gfn=PragmataPro:h13     " this only affects the GUI VIM
+                                        " if using console version, change the
+                                        " font in the console settings
+        " }
         color molokai                   " color scheme
-        set gfn=PragmataPro:h13         " font to use (if using powerline, make sure to use a patched font)
-        "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
-        "set gfn=Menlo\ for\ Powerline:h12 "set gfn=Meslo\ LG\ L\ Regular\ for\ Powerline:h12
         syntax on                       " enable syntax highlighting when possible
         set ls=2                        " allways show statusline
         set expandtab                   " insert space characters whenever tab key is pressed.
@@ -102,6 +107,7 @@
 "}
 
 " indentLine Options {
+    " NOTE: VIM must be compiled with conceal (Vim 7.3) for this to work
     let g:indentLine_char = '┊'
     let g:indentLine_first_char = '┊'
     let g:indentLine_showFirstIndentLevel = 1
