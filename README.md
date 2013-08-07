@@ -1,4 +1,4 @@
-vimconfig
+vimconfig [![Stories in Ready](https://badge.waffle.io/ahluntang/vimconfig.png)](http://waffle.io/ahluntang/vimconfig)
 =========
 
 ##Installation
