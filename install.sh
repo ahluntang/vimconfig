@@ -19,14 +19,6 @@ hash git >/dev/null && /usr/bin/env git clone https://github.com/ahluntang/vimco
 }
 
 
-echo -n "Checking for mercurial... "
-if which hg >/dev/null; then
-	echo " ${green}OK${textreset}"
-else
-    echo " ${red}Not OK${textreset}"
-	echo " !!! Mercurial not found, vim addon manager will nog be able to retrieve plugins using hg !!!"
-fi
-
 echo "Looking for an existing vimrc config..."
 if [ -f ~/.vimrc ] || [ -h ~/.vimrc ]
 then
@@ -44,7 +36,7 @@ fi
 echo "Creating .vimrc and .vim in homefolder..."
 ln -s ${DIR}/vimconfig/vim ~/.vim
 ln -s ${DIR}/vimconfig/vimrc ~/.vimrc
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 echo "Done, execute vi/vim to retrieve the vim plugins..."
-echo "${yellow}Make sure you have ${red}Mercurial/hg${yellow} installed for this !!${textreset}"
 

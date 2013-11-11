@@ -3,6 +3,14 @@
 "   If you have interesting suggestions, please feel free to make an issue or fork this and submit a pull request.
 " }
 
+if filereadable(expand("~/.vim/vimrc.before"))
+    source ~/.vim/vimrc.before
+endif
+
+if filereadable(expand("~/.vim/vimrc.bundles"))
+    source ~/.vim/vimrc.bundles
+endif
+
 " General {
     set nocompatible                    " use vim defaults
     set encoding=utf-8                  " use utf-8 as encoding
@@ -41,9 +49,11 @@
             " NOTE: some fonts do not have the correct unicode symbols for the
             " Powerline plugin. Make sure to use a patched font.
             " For compatible fonts and more information, see: https://github.com/Lokaltog/powerline-fonts
-            set gfn=PragmataPro:h13     " this only affects the GUI VIM
+            " set gfn=PragmataPro:h13     " this only affects the GUI VIM
                                         " if using console version, change the
                                         " font in the console settings
+            " set gfn=Meslo\ LG\ L\ DZ\ Regular\ for\ Powerline:h12
+            set gfn=Menlo\ Regular\ for\ Powerline:h13
         " }
         color molokai                   " color scheme
         syntax on                       " enable syntax highlighting when possible
@@ -120,18 +130,6 @@
 " }
 
 " Functions {
-    " VIM Addon Manager
-    fun SetupVAM()
-        let c = get(g:, 'vim_addon_manager', {})
-        let g:vim_addon_manager = c
-        let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
-        let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
-        if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
-            execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager ' 
-                \ shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
-        endif
-        call vam#ActivateAddons(['powerline','AutoComplPop','L9', 'The_NERD_tree','indentLine'], {'auto_install' : 0})
-    endfun
 
     " Content for tabs
     function MyTabLine()
@@ -196,5 +194,6 @@
 
 " }
 
-call SetupVAM() "Run Vim Addon Manager function to retrieve/update plugins/addons.
-
+if filereadable(expand("~/.vim/vimrc.after"))
+    source ~/.vim/vimrc.after
+endif
