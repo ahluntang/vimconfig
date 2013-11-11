@@ -37,6 +37,7 @@ echo "Creating .vimrc and .vim in homefolder..."
 ln -s ${DIR}/vimconfig/vim ~/.vim
 ln -s ${DIR}/vimconfig/vimrc ~/.vimrc
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+vim +BundleInstall! +BundleClean +qall
 
 echo "Done, execute vi/vim to retrieve the vim plugins..."
 
