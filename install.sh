@@ -38,7 +38,7 @@ ln -s ${DIR}/vimconfig/vim ~/.vim
 ln -s ${DIR}/vimconfig/vimrc ~/.vimrc
 mkdir ${DIR}/vimconfig/vim/bundle
 git clone https://github.com/gmarik/vundle.git ${DIR}/vimconfig/vim/bundle/vundle
-/usr/bin/vim +BundleInstall! +BundleClean +qall
+vim +BundleInstall! +BundleClean +qall
 
 echo "Done, execute vi/vim to retrieve the vim plugins..."
 
