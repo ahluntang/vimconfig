@@ -21,9 +21,9 @@ endif
     set backup                          " backups are useful
     set backupdir=~/.vim/backupfiles//
     set directory=~/.vim/undofiles//
-    if v:version < 703
-        set undodir=~/.vim/undofiles//  " vim versions lower than 7.3 don't know undodir
-    endif
+    "if v:version < 703
+    "    set undodir=~/.vim/undofiles//  " vim versions lower than 7.3 don't know undodir
+    "endif
     set wildmenu                        " show list instead of just completing
     set wildmode=list:longest,full      " command <tab> completion, list matches, then longest common part, then all
     set shortmess=aTItoO                " disable the splash screen (and some various tweaks for messages).
