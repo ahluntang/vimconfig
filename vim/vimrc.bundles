@@ -1,4 +1,3 @@
-
 " VIM Bundles { 
     filetype off
     set rtp+=~/.vim/bundle/vundle
@@ -32,12 +31,12 @@
     Bundle 'matchit.zip'
     Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
     Bundle 'Lokaltog/vim-easymotion'
-    Bundle 'godlygeek/csapprox'
+    "Bundle 'godlygeek/csapprox'
     Bundle 'jistr/vim-nerdtree-tabs'
     Bundle 'flazz/vim-colorschemes'
     Bundle 'mbbill/undotree'
     Bundle 'nathanaelkane/vim-indent-guides'
-    Bundle 'airblade/vim-gitgutter'
+    "Bundle 'airblade/vim-gitgutter'
     Bundle 'scrooloose/syntastic'
     Bundle 'tpope/vim-fugitive'
     Bundle 'mattn/webapi-vim'
@@ -47,11 +46,11 @@
     "Bundle 'majutsushi/tagbar'
 
     Bundle 'Shougo/neocomplcache'
-    Bundle 'Shougo/neosnippet'
+    "Bundle 'Shougo/neosnippet'
     Bundle 'honza/vim-snippets'
 
     " Python
-    Bundle 'klen/python-mode'
+    "Bundle 'klen/python-mode'
     Bundle 'python.vim'
     Bundle 'python_match.vim'
     Bundle 'pythoncomplete'
